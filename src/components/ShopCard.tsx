@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import products from '../api/products';
+import products from '../app/api/productsList';
 
 type CardProps = React.ComponentProps<typeof Card>;
 
