@@ -12,6 +12,7 @@ import {
   import { Button } from "@/components/ui/button"
   import { ShoppingCart } from "lucide-react"
   import { cn } from "@/lib/utils"
+  import Link from 'next/link'
 
 
 async function getData() {
@@ -52,7 +53,9 @@ export default async function ProductList({ className, ...props }: CardProps) {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button className='w-full'><ShoppingCart className="mr-2 h-4 w-4" />Add to cart</Button>
+                                <Link href={`/products/${item?.productId}`}>
+                                    <Button className='w-full'><ShoppingCart className="mr-2 h-4 w-4" />Add to cart</Button>
+                                </Link>
                             </CardFooter>
                         </Card>
                     </div>

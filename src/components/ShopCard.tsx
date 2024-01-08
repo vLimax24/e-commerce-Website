@@ -11,24 +11,31 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { notFound} from 'next/navigation'
 
-import products from '../app/api/productsList';
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/products", { cache: "no-store"})
+  if(!res.ok) return notFound()
+  return res.json()
+}
 
 type CardProps = React.ComponentProps<typeof Card>;
 
-function ShopCard({ className, ...props }: CardProps) {
+async function ShopCard({ className, ...props }: CardProps) {
+
+    const data = await getData()
     return (
       <>
-        {products.map((product, index) => (
-          <Card key={index} className={cn("w-[380px] mb-5", className)} {...props}>
+        {data.map((item:any) => (
+          <Card key={item._id} className={cn("w-[380px] mb-5", className)} {...props}>
             <CardHeader>
-              <CardTitle>{product.name}</CardTitle>
-              <CardDescription>{product.description}</CardDescription>
+              <CardTitle>{item.name}</CardTitle>
+              <CardDescription>{item.description}</CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4">
               <Image
-                src={product.imageLink}
-                alt={product.name}
+                src={item.imageLink}
+                alt={item.name}
                 width={600}
                 height={200}
                 className="rounded-2xl mb-5"
@@ -36,12 +43,12 @@ function ShopCard({ className, ...props }: CardProps) {
                 style={{ width: '600px', height: '200px', objectFit: 'cover'  }}
               />
               <div className="flex justify-between">
-                <p>Price: {product.price}</p>
-                <p>Quantity: {product.quantity}</p>
+                <p>Price: {item.price}</p>
+                <p>Quantity: {item.quantity}</p>
               </div>
             </CardContent>
             <CardFooter>
-              <Link href={`/products/${product.id}`}>
+              <Link href={`/products/${item._id}`}>
                 <Button className="!w-full">
                   <ShoppingCart className="mr-2 h-4 w-4" />Add to cart
                 </Button>
