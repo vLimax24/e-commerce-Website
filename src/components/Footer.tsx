@@ -40,6 +40,9 @@ const Footer = () => {
           <a href="#" className="hover:text-gray-400">
             Privacy Policy
           </a>
+          <a href="/adminLogin" className="hover:text-gray-400">
+            admin
+          </a>
         </div>
         <p className="text-sm mt-4 md:mt-0">&copy; 2024 AXEX Labs. All rights reserved.</p>
       </div>
