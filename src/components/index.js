@@ -5,6 +5,7 @@ import ModeToggle from './ModeToggle.tsx';
 import NavigationMenu from './NavigationMenu'
 import ShopCard from './ShopCard'
 import ItemGrid from './ItemGrid'
+import AdminSubmitButton from './AdminSubmitButton'
 
 export {
     Navbar,
@@ -14,5 +15,6 @@ export {
     NavigationMenu,
     ShopCard,
     ItemGrid,
+    AdminSubmitButton,
 }
 
